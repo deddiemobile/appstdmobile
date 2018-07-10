@@ -1,0 +1,45 @@
+{
+    "name": "MobileAppStd",
+    "cordova": {
+        "plugins": {
+            "mobi.monaca.plugins.Monaca": {},
+            "mobi.monaca.plugins.MonacaBackend": {},
+            "mobi.monaca.plugins.WebIntent": {},
+            "cordova-plugin-whitelist": {},
+            "cordova-custom-config": {},
+            "cordova-plugin-camera": {},
+            "cordova-plugin-device": {},
+            "cordova-plugin-device-motion": {},
+            "cordova-plugin-device-orientation": {},
+            "cordova-plugin-file": {},
+            "cordova-plugin-file-transfer": {},
+            "cordova-plugin-geolocation": {},
+            "cordova-plugin-inappbrowser": {},
+            "cordova-plugin-network-information": {},
+            "cordova-plugin-dialogs": {},
+            "cordova-plugin-vibration": {},
+            "cordova-plugin-media": {},
+            "cordova-plugin-splashscreen": {}
+        }
+    },
+    "dependencies": {
+        "mobi.monaca.plugins.Monaca": "3.1.0",
+        "mobi.monaca.plugins.MonacaBackend": "1.4.0",
+        "mobi.monaca.plugins.WebIntent": "1.0.0",
+        "cordova-plugin-whitelist": "1.3.3",
+        "cordova-custom-config": "5.0.2",
+        "cordova-plugin-camera": "4.0.1",
+        "cordova-plugin-device": "2.0.1",
+        "cordova-plugin-device-motion": "1.2.5",
+        "cordova-plugin-device-orientation": "1.0.7",
+        "cordova-plugin-file": "5.0.0",
+        "cordova-plugin-file-transfer": "1.7.0",
+        "cordova-plugin-geolocation": "4.0.1",
+        "cordova-plugin-inappbrowser": "2.0.1",
+        "cordova-plugin-network-information": "2.0.1",
+        "cordova-plugin-dialogs": "2.0.1",
+        "cordova-plugin-vibration": "2.1.6",
+        "cordova-plugin-media": "4.0.0",
+        "cordova-plugin-splashscreen": "5.0.1"
+    }
+}

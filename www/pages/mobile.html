@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!--<meta http-equiv="Content-Security-Policy" content="default-src *; script-src * 'unsafe-eval' 'unsafe-inline'; connect-src *; img-src *; style-src * 'unsafe-inline' ; media-src *;"> -->
+        
+
+        <title>ΔΕΔΔΗΕ Εφαρμογές Δικτύου</title>
+        
+        <link rel="shortcut icon" href="../icons/favicon.ico" type="image/x-icon">                                   
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>        
+     
+    <body id='mainBody'> 
+    <input type="hidden" id='token' value=""/>
+ 	<input type="hidden" id='username' value=""/>
+       
+        <div id='libs'></div>       
+         
+         <!-- jQuery -->
+        <script src="../js/jquery.min.js"></script>           
+        <script src="../js/startmin.js"></script> 
+        <script>
+                
+                jQuery.support.cors = true;
+                
+                //loading the libs    		 	
+            	loadSync('libs', 'libs.html');
+            
+                function loadSync(elemId, page) {
+    
+        	   $.ajax({
+    		        url: page,
+    		        type: "GET",
+    		        data: null,//{ s : "HELLO" },
+    		        headers: {
+    			      'Access-Control-Allow-Origin': '*',
+    			      'Access-Control-Allow-Methods': 'GET,POST',
+    			      'Access-Control-Allow-Headers':'Origin, X-Requested-With, Content-Type, Accept'
+    			    },
+    			    async:false,
+    		        dataType: "text",
+    		        success: function(data, textStatus, jqXHR) {
+    
+    		           $("#"+elemId).html(data);
+    
+    
+    		        },
+    		        error: function(jqXHR, textStatus, errorThrown) {
+    		            alert(jqXHR.status + " " + jqXHR.statusText+" "+errorThrown);
+    		        }
+    
+    		    });
+    		}
+                       
+
+        </script> 
+                   
+        <!-- Cordova -->        
+       <script src="../cordova.js"></script>
+       
+       <!--Monaca-->
+       <script src="../components/monaca-core-utils/monaca-core-utils.js"></script>             
+        
+        <!-- custom js -->
+        <script type="text/javascript">	    		    						
+					jQuery.support.cors = true; 
+															 	
+                    var app_id = window.localStorage.getItem('app_id');				 			 	
+                    var token = window.localStorage.getItem('token');				
+				 	var force_chpass = window.localStorage.getItem('force_chpass');			
+
+                    //loads map	 	
+                    loadMapKey('google_maps_key'); 
+                    
+                      //loads customdeddie
+                     loadMain('mobilejs');
+				 	
+				 $(document).on('ready', function(){                                         
+				 	                                                               
+				 	//fixes the dropdown
+				 	$('.dropdown-toggle').dropdown();
+				 					 	 					 	
+				 	
+				 	//getting the username info
+				 	getUserInfo();
+				 	//-----------------	
+				 	
+				 	//build the menu
+				 	buildMobileMenu();                     
+                     
+                    //default value
+                    $('#contype').text('-');
+                    //schedule connection
+                    setInterval(check_internet, 4000);                    
+                    
+                    checkMobileVersion();
+                    
+                    //get location
+                    localStorage.removeItem('check_location');
+                    checkLoc();
+                    //every 5 minutes
+                    setInterval(checkLoc, 300000);                                        
+					
+                    //if ( navigator.platform == 'iPad')
+                      //alert('Welcome!');                    																	
+				 
+				 })//document ready				          	
+				  				 
+		 </script>
+         
+          <div id="wrapper">
+
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">                                                          				
+                <ul class="nav navbar-left navbar-top-links" id='mobmenudep'>                     
+                    <!--  <li><a href='#' onclick="openPage('tables.html#dfr');">Αναγγελία Βλάβης</a></li>
+                      <li><a href='#' onclick="openPage('tables.html#dfr_view');">Απεικόνιση Βλάβης</a></li>  -->                                                            
+                </ul>
+
+                <ul class="nav navbar-right navbar-top-links">
+                    <li class="dropdown">
+                           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-signal fa-fw" id='conicon'></i> <i id='contype'></i>
+                        </a>                       
+                    </li>  
+                    <li class="dropdown">
+                      	 <a class="dropdown-toggle" data-toggle="dropdown" href="#" onclick=" location.reload(true);sessionStorage.setItem('rel','1');" >
+                            <i class="fa fa-user fa-fw"></i> <i id='usr'></i>
+                        </a>                       
+                    </li>                    
+                    <li>
+                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-sitemap fa-fw"></i><i>Επιλογές</i><b class="caret"></b>
+                        </a>
+                         
+                          <ul class="dropdown-menu dropdown-user" id='mobmenu'>                                                       
+                        </ul> 
+                    </li>   
+                     <!--<li>
+                    	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-sitemap fa-fw"></i><i id='curapp'></i><b class="caret" id="acaret"></b>
+                        </a>
+                         
+                          <ul class="dropdown-menu dropdown-user" id='allapps'>                                                       
+                        </ul> 
+                    </li>-->                          
+                   
+                </ul>
+                <!-- /.navbar-top-links -->
+
+               <!--  <div class="navbar-default sidebar" role="navigation" id='navb'>
+                    <div class="sidebar-nav navbar-collapse" id='cssmenu'>
+                     
+                     </div>  
+                    
+                </div> -->
+                <!-- /.navbar-static-side -->             
+            </nav>
+
+            <!-- Page Content -->
+            <div id="page-wrapper" style="margin-left:0">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h3 class="page-header" id="ptitle"><!-- insert title --></h3>
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                    
+                    <div class="row" id='mainPage'>
+                    	<!-- replace here -->
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /#page-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+        <div class="spinner"><img id="loadingImg" src="../icons/loading.gif"></div>                     
+		 		
+
+    </body>
+</html>

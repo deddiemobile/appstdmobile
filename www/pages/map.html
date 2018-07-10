@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>ΔΕΔΔΗΕ Χάρτης</title>
+      
+<link rel="shortcut icon" href="/appstd/app/icons/favicon.ico" type="image/x-icon">
+<link href="../css/map/map.css" rel="stylesheet">
+
+</head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta http-equiv="Content-Style-Type" content="text/css"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+
+<!-- 
+
+http://maps.google.com/maps?z=12&t=m&q=loc:38.9419+-78.3020
+
+    z is the zoom level (1-20)
+    t is the map type ("m" map, "k" satellite, "h" hybrid, "p" terrain, "e" GoogleEarth)
+    q is the search query,
+
+
+http://www.w3schools.com/graphics/google_maps_intro.asp
+
+below is used maps.googleapi : https://developers.google.com/maps/documentation/javascript/examples/places-searchbox
+ -->
+
+
+
+<body>
+<div id='libs'></div>
+<!-- <iframe width="400" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=37.972844,23.7677718&hl=el&z=15&output=embed"></iframe>-->
+ <button id="pac-back" class="controls" onclick="javascript:hideMap();">Κλείσιμο</button>
+ <input id="pac-input" class="controls" type="text" placeholder="Αναζήτηση">
+ <button id="pac-button" class="controls" onclick="javascript:saveCords();" style="display:none">Αποθήκευση</button>
+<div id="map" style="width:100%;height:400px"></div>
+
+<!--<script src="../js/map/map.js"></script>  -->
+
+<script>
+
+loadMain('mapjs');
+
+//loading the libs
+//loadSync('libs', 'libs.html');
+
+var token = localStorage.getItem("token");
+
+var lat =  localStorage.getItem("cords").split(",")[0];
+var lon = localStorage.getItem("cords").split(",")[1];
+var id = localStorage.getItem("mapid");
+
+//
+myMap();
+</script>
+
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXcTgqt6_IcksYmdUbKygtRxxJQD8Rxdo&callback=myMap&libraries=places"></script>-->
+
+
+</body></html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Αλλαγή Password</title>
+        
+    </head>
+    <body>
+    
+        <div id='libs'></div>    	    	
+
+         <div id="formPage">                  		
+            
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-info">
+                        	<a class="navbar-brand" href="#" id="togglefchpass"><i class="fa  fa-toggle-up fa-fw" id="toggleiconfchpass"></i></a>
+                            <div class="panel-heading" id='titlefchpass'>
+                                Αλλαγή Password
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="col-lg-12">
+	                            <div class="panel-body">
+	                                <div class="row" id='fchpass'>
+	                                	<!-- form goes here -->
+	                                	
+	                                </div>
+	                                
+	                            </div>
+	                            <!-- /.panel-body -->
+                            </div>
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div><!-- row ends here -->
+                
+               
+               
+               
+               
+               
+            </div>
+            <!-- /#page-wrapper -->                     
+
+        <!-- jQuery -->
+        <script src="../js/jquery.min.js"></script>        
+                 
+
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+        <script>
+        
+        	jQuery.support.cors = true;		
+        	
+        	//loading the libs
+		 	$('#libs').load('libs.html');
+        					 	
+		 	var token = localStorage.getItem("token");
+		 			 			 			 			 	
+		 	var ua = window.navigator.userAgent;  
+    		if ( ua.indexOf('Chrome') > -1 ){
+    			sleep(_SLEEP);//milisecond in order to load the js	
+    		}
+		 			 	        	        	 
+        	
+        	$(document).on('ready', function(){        		        	
+        		        		        	
+        		
+        		getChangePass();        		        		        		        		
+        	
+        	
+        	})//document ready
+        	
+        //---------------------------------------	    		    
+		 				 		
+		 		
+	 		function getChangePass(){
+        		
+        		//set title
+        		$('#ptitle').html("Αλλαγή Password");
+				$("#titlefchpass").html("Αλλαγή Password");		
+	 							
+				getFormDetails("changePass", "fchpass" );					
+																		
+									
+	 	
+	 		}//getChangePass
+	 		
+	 			 		
+		 			 	
+		 
+		 
+		 			 	
+		 			 			 			 			  	    	   	 			 			 			 		 		 		 
+        	           
+        </script>
+
+    </body>
+</html>
